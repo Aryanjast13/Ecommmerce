@@ -4,6 +4,9 @@ import { protectRoute } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
+router.get("/backendcheck", (req, res) => {
+    res.send("chl rha hai backend");
+})
 
 router.post("/signup", signup);
 

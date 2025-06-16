@@ -73,6 +73,7 @@ export const useCartStore = create<CartStore>((set, get) => ({
 	getCartItems: async () => {
 		try {
 			const res = await axios.get("/cart");
+			console.log(res.data);
 			set({ cart: res.data });
 			get().calculateTotals();
 		} catch (error:any) {
