@@ -1,4 +1,4 @@
-"use client";
+
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -25,7 +25,7 @@ interface data {
   address: string;
 }
 
-export function ProfilePage() {
+export default function ProfilePage() {
   const {user,editPofile } = useUserStore();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState<data>({
