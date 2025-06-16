@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Trash, Star } from "lucide-react";
+import { Star, Trash } from "lucide-react";
 import { useProductStore } from "../stores/useProductStore";
 
 const ProductsList = () => {
@@ -52,7 +52,7 @@ const ProductsList = () => {
 				</thead>
 
 				<tbody className='bg-gray-800 divide-y divide-gray-700'>
-					{products?.map((product) => (
+					{products?.map((product:any) => (
 						<tr key={product._id} className='hover:bg-gray-700'>
 							<td className='px-6 py-4 whitespace-nowrap'>
 								<div className='flex items-center'>

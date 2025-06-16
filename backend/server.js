@@ -3,14 +3,14 @@ import dotenv from "dotenv";
 import path from "path";
 dotenv.config();
 
-import cors from "cors"
+import cors from "cors";
 
 import express, { urlencoded } from "express";
 import dbConnect from "./config/db.js";
 import authRoutes from "./routes/auth.route.js";
 import cartRoutes from "./routes/cart.route.js";
 import couponRoutes from "./routes/coupon.route.js";
-import { default as analyticsRoutes, default as paymentRoutes } from "./routes/payment.route.js";
+import { default as paymentRoutes } from "./routes/payment.route.js";
 import productRoutes from "./routes/product.route.js";
 
 
@@ -36,11 +36,6 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/coupons", couponRoutes);
 app.use("/api/payments", paymentRoutes);
-app.use("/api/analytics", analyticsRoutes);
-
-
- 
-
 
 
 async function startServer() {

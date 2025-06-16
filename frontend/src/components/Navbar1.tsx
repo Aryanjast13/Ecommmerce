@@ -16,14 +16,12 @@ import {
   User
 } from "lucide-react";
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
     const { user, logout }:any = useUserStore();
     const isAdmin = user?.role === "admin";
     const { cart } = useCartStore();
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">

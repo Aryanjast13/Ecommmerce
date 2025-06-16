@@ -1,5 +1,5 @@
-import { XCircle, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import { ArrowLeft, XCircle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const PurchaseCancelPage = () => {
@@ -9,7 +9,7 @@ const PurchaseCancelPage = () => {
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5 }}
-				className='max-w-md w-full bg-gray-800 rounded-lg shadow-xl overflow-hidden relative z-10'
+				className='max-w-md w-full bg-five rounded-lg shadow-xl overflow-hidden relative z-10'
 			>
 				<div className='p-6 sm:p-8'>
 					<div className='flex justify-center'>
@@ -20,7 +20,7 @@ const PurchaseCancelPage = () => {
 						Your order has been cancelled. No charges have been made.
 					</p>
 					<div className='bg-gray-700 rounded-lg p-4 mb-6'>
-						<p className='text-sm text-gray-400 text-center'>
+						<p className='text-sm text-third text-center'>
 							If you encountered any issues during the checkout process, please don&apos;t hesitate to
 							contact our support team.
 						</p>

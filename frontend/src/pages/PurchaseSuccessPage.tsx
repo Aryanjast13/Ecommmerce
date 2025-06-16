@@ -1,17 +1,17 @@
 import { ArrowRight, CheckCircle, HandHeart } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useCartStore } from "../stores/useCartStore";
-import axios from "../lib/axios";
 import Confetti from "react-confetti";
+import { Link } from "react-router-dom";
+import axios from "../lib/axios";
+import { useCartStore } from "../stores/useCartStore";
 
 const PurchaseSuccessPage = () => {
 	const [isProcessing, setIsProcessing] = useState(true);
 	const { clearCart } = useCartStore();
-	const [error, setError] = useState(null);
+	const [error, setError] = useState<string |null>(null);
 
 	useEffect(() => {
-		const handleCheckoutSuccess = async (sessionId) => {
+		const handleCheckoutSuccess = async (sessionId:any) => {
 			try {
 				await axios.post("/payments/checkout-success", {
 					sessionId,
@@ -48,19 +48,19 @@ const PurchaseSuccessPage = () => {
 				recycle={false}
 			/>
 
-			<div className='max-w-md w-full bg-gray-800 rounded-lg shadow-xl overflow-hidden relative z-10'>
+			<div className='max-w-md w-full bg-five rounded-lg shadow-xl overflow-hidden relative z-10'>
 				<div className='p-6 sm:p-8'>
 					<div className='flex justify-center'>
-						<CheckCircle className='text-emerald-400 w-16 h-16 mb-4' />
+						<CheckCircle className='text-second w-16 h-16 mb-4' />
 					</div>
-					<h1 className='text-2xl sm:text-3xl font-bold text-center text-emerald-400 mb-2'>
+					<h1 className='text-2xl sm:text-3xl font-bold text-center text-second mb-2'>
 						Purchase Successful!
 					</h1>
 
 					<p className='text-gray-300 text-center mb-2'>
 						Thank you for your order. {"We're"} processing it now.
 					</p>
-					<p className='text-emerald-400 text-center text-sm mb-6'>
+					<p className='text-second text-center text-sm mb-6'>
 						Check your email for order details and updates.
 					</p>
 					<div className='bg-gray-700 rounded-lg p-4 mb-6'>

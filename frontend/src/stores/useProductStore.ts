@@ -1,8 +1,30 @@
-import { create } from "zustand";
 import toast from "react-hot-toast";
+import { create } from "zustand";
 import axios from "../lib/axios";
 
-export const useProductStore = create((set) => ({
+
+export interface Product {
+	_id: string;
+	name: string;
+	price: number;
+	category: string;
+	isFeatured: boolean;
+	// Add any other fields your product model has
+}
+
+interface ProductStore {
+	products: Product[];
+	loading: boolean;
+	setProducts: (products: Product[]) => void;
+	createProduct: (productData: Partial<Product>) => Promise<void>;
+	fetchAllProducts: () => Promise<void>;
+	fetchProductsByCategory: (category: string) => Promise<void>;
+	deleteProduct: (productId: string) => Promise<void>;
+	toggleFeaturedProduct: (productId: string) => Promise<void>;
+	fetchFeaturedProducts: () => Promise<void>;
+}
+
+export const useProductStore = create<ProductStore>((set) => ({
 	products: [],
 	loading: false,
 
@@ -15,7 +37,7 @@ export const useProductStore = create((set) => ({
 				products: [...prevState.products, res.data],
 				loading: false,
 			}));
-		} catch (error) {
+		} catch (error:any) {
 			toast.error(error.response.data.error);
 			set({ loading: false });
 		}
@@ -25,8 +47,8 @@ export const useProductStore = create((set) => ({
 		try {
 			const response = await axios.get("/products");
 			set({ products: response.data.products, loading: false });
-		} catch (error) {
-			set({ error: "Failed to fetch products", loading: false });
+		} catch (error:any) {
+			set({ loading: false });
 			toast.error(error.response.data.error || "Failed to fetch products");
 		}
 	},
@@ -35,8 +57,8 @@ export const useProductStore = create((set) => ({
 		try {
 			const response = await axios.get(`/products/category/${category}`);
 			set({ products: response.data.products, loading: false });
-		} catch (error) {
-			set({ error: "Failed to fetch products", loading: false });
+		} catch (error:any) {
+			set({loading: false });
 			toast.error(error.response.data.error || "Failed to fetch products");
 		}
 	},
@@ -48,7 +70,7 @@ export const useProductStore = create((set) => ({
 				products: prevProducts.products.filter((product) => product._id !== productId),
 				loading: false,
 			}));
-		} catch (error) {
+		} catch (error:any) {
 			set({ loading: false });
 			toast.error(error.response.data.error || "Failed to delete product");
 		}
@@ -64,18 +86,18 @@ export const useProductStore = create((set) => ({
 				),
 				loading: false,
 			}));
-		} catch (error) {
+		} catch (error:any) {
 			set({ loading: false });
 			toast.error(error.response.data.error || "Failed to update product");
 		}
 	},
-	fetchFeaturedProducts: async () => {
+	fetchFeaturedProducts: async () => {	
 		set({ loading: true });
 		try {
 			const response = await axios.get("/products/featured");
 			set({ products: response.data, loading: false });
-		} catch (error) {
-			set({ error: "Failed to fetch products", loading: false });
+		} catch (error:any) {
+			set({ loading: false });
 			console.log("Error fetching featured products:", error);
 		}
 	},
