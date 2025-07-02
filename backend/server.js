@@ -24,6 +24,7 @@ const __dirname = path.resolve();
 app.use(express.json({limit:"10mb"}));
 app.use(cookieParser());
 app.use(urlencoded());
+console.log(process.env.CLIENT_URL);
 app.use(
   cors({
       origin:process.env.CLIENT_URL,
