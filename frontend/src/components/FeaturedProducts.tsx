@@ -31,7 +31,7 @@ const FeaturedProducts = ({ featuredProducts }:any) => {
 							style={{ transform: `translateX(-${currentIndex * (100 / itemsPerPage)}%)` }}
 						>
 							{featuredProducts?.map((product: any) => (
-								<ProductCard product={product}/>
+								<ProductCard product={product} key={product._id } />
 							))}
 						</div>
 					</div>

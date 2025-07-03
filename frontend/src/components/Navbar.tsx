@@ -1,5 +1,3 @@
-
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,18 +8,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useCartStore } from "@/stores/useCartStore";
 import { useUserStore } from "@/stores/useUserStore";
-import {
-  Lock,
-  ShoppingCart,
-  User
-} from "lucide-react";
+import { Lock, ShoppingCart, User } from "lucide-react";
 
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
-    const { user, logout }:any = useUserStore();
-    const isAdmin = user?.role === "admin";
-    const { cart } = useCartStore();
+  const { user, logout }: any = useUserStore();
+  const isAdmin = user?.role === "admin";
+  const { cart } = useCartStore();
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
@@ -79,7 +73,7 @@ export default function Navbar() {
                 >
                   Home
                 </Link>
-            </li>
+              </li>
               <li>
                 <Link
                   to="/about"
@@ -101,10 +95,9 @@ export default function Navbar() {
 
           {/* Column 3: User Actions */}
           <div className="flex items-center justify-end space-x-2">
-
             {/* User Account */}
             <DropdownMenu>
-              <DropdownMenuTrigger>
+              <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -114,22 +107,23 @@ export default function Navbar() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <Link to="/login">
-                  {user ?
-                    <DropdownMenuItem onClick={logout}>
-                      Logout
-                    </DropdownMenuItem> : <DropdownMenuItem >
-                      Login
-                    </DropdownMenuItem>}
-                </Link>
-                {!user && (
-                  <Link to="/signup">
-                    <DropdownMenuItem>Create Account</DropdownMenuItem>
-                  </Link>
+                {user ? (
+                  <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem asChild>
+                    <Link to="/login">Login</Link>
+                  </DropdownMenuItem>
                 )}
-                <Link to="/profile">
-                  <DropdownMenuItem>My Profile</DropdownMenuItem>
-                </Link>
+
+                {!user && (
+                  <DropdownMenuItem asChild>
+                    <Link to="/signup">Create Account</Link>
+                  </DropdownMenuItem>
+                )}
+
+                <DropdownMenuItem asChild>
+                  <Link to="/profile">My Profile</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 
